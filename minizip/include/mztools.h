@@ -12,7 +12,7 @@ extern "C" {
 #endif
 
 #ifndef _ZLIB_H
-#include "zlib.h"
+#include <zlib.h>
 #endif
 
 #include "unzip.h"
@@ -22,7 +22,7 @@ extern "C" {
    fileOut: output file after recovery
    fileOutTmp: temporary file name used for recovery
 */
-extern int ZEXPORT unzRepair(const char* file,
+extern MINIZIP_API int unzRepair(const char* file,
                              const char* fileOut,
                              const char* fileOutTmp,
                              uLong* nRecovered,

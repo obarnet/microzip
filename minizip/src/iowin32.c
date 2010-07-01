@@ -10,10 +10,11 @@
      For more info read MiniZip_info.txt
 
 */
+#ifdef _WIN32
 
 #include <stdlib.h>
 
-#include "zlib.h"
+#include <zlib.h>
 #include "ioapi.h"
 #include "iowin32.h"
 
@@ -387,3 +388,5 @@ void fill_win32_filefunc64W(zlib_filefunc64_def* pzlib_filefunc_def)
     pzlib_filefunc_def->zerror_file = win32_error_file_func;
     pzlib_filefunc_def->opaque = NULL;
 }
+
+#endif // _WIN32

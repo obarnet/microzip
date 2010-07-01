@@ -10,19 +10,23 @@
          For more info read MiniZip_info.txt
 
 */
+#ifdef _WIN32
 
 #include <windows.h>
 
+#include "export.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-void fill_win32_filefunc OF((zlib_filefunc_def* pzlib_filefunc_def));
-void fill_win32_filefunc64 OF((zlib_filefunc64_def* pzlib_filefunc_def));
-void fill_win32_filefunc64A OF((zlib_filefunc64_def* pzlib_filefunc_def));
-void fill_win32_filefunc64W OF((zlib_filefunc64_def* pzlib_filefunc_def));
+MINIZIP_API void fill_win32_filefunc OF((zlib_filefunc_def* pzlib_filefunc_def));
+MINIZIP_API void fill_win32_filefunc64 OF((zlib_filefunc64_def* pzlib_filefunc_def));
+MINIZIP_API void fill_win32_filefunc64A OF((zlib_filefunc64_def* pzlib_filefunc_def));
+MINIZIP_API void fill_win32_filefunc64W OF((zlib_filefunc64_def* pzlib_filefunc_def));
 
 #ifdef __cplusplus
 }
 #endif
+
+#endif //_WIN32

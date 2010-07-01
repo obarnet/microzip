@@ -8,7 +8,9 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "zlib.h"
+#include <zlib.h>
+
+#include "export.h"
 #include "unzip.h"
 
 #define READ_8(adr)  ((unsigned char)*(adr))
@@ -27,7 +29,7 @@
   WRITE_16((unsigned char*)(buff) + 2, (n) >> 16); \
 } while(0)
 
-extern int ZEXPORT unzRepair(file, fileOut, fileOutTmp, nRecovered, bytesRecovered)
+extern int MINIZIP_API unzRepair(file, fileOut, fileOutTmp, nRecovered, bytesRecovered)
 const char* file;
 const char* fileOut;
 const char* fileOutTmp;
