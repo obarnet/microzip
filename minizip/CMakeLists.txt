@@ -6,11 +6,13 @@ project(minizip)
 find_package(ZLIB REQUIRED)
 link_directories(${ZLIB_LIBRARY_DIRS})
 
-# set libname
 set(MINIZIP_LIB_MAJOR 1)
 set(MINIZIP_LIB_MINOR 1)
 set(MINIZIP_LIB_RELEASE 0)
 set(MINIZIP_LIB_NAME minizip_${MINIZIP_LIB_MAJOR}-${MINIZIP_LIB_MINOR})
+set(MINIZIP_SRC_DIR ${CMAKE_CURRENT_SOURCE_DIR}/src)
+set(MINIZIP_INCLUDE_DIR ${CMAKE_CURRENT_SOURCE_DIR}/include)
+
 # to distinguish between debug and release lib
 set(CMAKE_DEBUG_POSTFIX "d")
 
@@ -27,12 +29,12 @@ include_directories(
 file(
 	GLOB_RECURSE
 	MINIZIP_SOURCE_FILES
-	src/*
+	${MINIZIP_SRC_DIR}/*
 )
 file(
     GLOB_RECURSE
     MINIZIP_INCLUDE_FILES
-    include/*
+    ${MINIZIP_INCLUDE_DIR}/*
 )
 
 
@@ -69,10 +71,10 @@ install( FILES ${MINIZIP_INCLUDE_FILES}
 
 if(MINIZIP_DEMOS)
     set(MINIUNZ_DEMO_SOURCES_FILES
-        demos/miniunz.c
+        ${minizip_SOURCE_DIR}/demos/miniunz.c
     )
     set(MINIZIP_DEMO_SOURCES_FILES
-        demos/minizip.c
+        ${minizip_SOURCE_DIR}/demos/minizip.c
     )
     set(MINIUNZ_DEMO_NAME miniunz)
     set(MINIZIP_DEMO_NAME minizip)
