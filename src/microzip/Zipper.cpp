@@ -3,9 +3,7 @@
 #include <iostream>
 #include <fstream>
 
-#ifdef _WIN32
-#include <WinBase.h>
-#else
+#ifndef _WIN32
 #include <sys/types.h>
 #include <sys/stat.h>
 #endif
@@ -63,7 +61,7 @@ void Zipper::GetFileInfo(ZipFileInfo& info)
 }
 
 //------------------------------------------------------------------------------
-
+// static version
 bool Zipper::ZipFile(::boost::filesystem::path filePath, ::boost::filesystem::path zipFilePath, int level)
 {
     bool res = false;
@@ -82,7 +80,7 @@ bool Zipper::ZipFile(::boost::filesystem::path filePath, ::boost::filesystem::pa
 }
 
 //------------------------------------------------------------------------------
-
+// static version
 bool Zipper::ZipFolder(::boost::filesystem::path folderPath, ::boost::filesystem::path zipFilePath, bool bIgnoreFilePath, int level)
 {
     bool res = false;

@@ -50,7 +50,6 @@ bool Unzipper::CloseZip()
 
 //------------------------------------------------------------------------------
 
-// simple interface
 bool Unzipper::Unzip(bool bIgnoreFilePath)
 {
     bool res = false;

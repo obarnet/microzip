@@ -39,6 +39,7 @@ struct UnZipFileInfo
     std::tm       fileDate;
 };
 
+    
 class MICROZIP_CLASS_API Unzipper
 {
 public:
@@ -46,7 +47,6 @@ public:
     MICROZIP_API Unzipper(::boost::filesystem::path filePath );
     MICROZIP_API virtual ~Unzipper();
 
-    // simple interface
     MICROZIP_API static bool Unzip(::boost::filesystem::path fileName, ::boost::filesystem::path folder = "", bool bIgnoreFilePath = false);
 
     // works with prior opened zip
