@@ -1,8 +1,9 @@
+#include <cstring>
 #include <ctime>
 #include <iostream>
 #include <fstream>
 
-#ifdef _WIN3
+#ifdef _WIN32
 #include <WinBase.h>
 #else
 #include <sys/types.h>
@@ -51,7 +52,6 @@ bool Zipper::CloseZip()
 
     m_uzFile = NULL;
     m_rootFolder = "";
-    memset( &m_info, 0, sizeof(m_info) );
     return (nRet == ZIP_OK);
 }
 

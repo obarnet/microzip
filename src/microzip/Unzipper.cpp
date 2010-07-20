@@ -1,3 +1,4 @@
+#include <cstring>
 #include <iostream>
 #include <fstream>
 
@@ -5,6 +6,10 @@
 #include <boost/filesystem/convenience.hpp>
 
 #include "microzip/Unzipper.hpp"
+
+#ifndef _WIN32
+#include <sys/stat.h>
+#endif
 
 namespace microzip
 {
@@ -216,7 +221,6 @@ bool Unzipper::GetFileInfo(UnZipFileInfo& info)
     if (m_uzFile)
     {
         unz_file_info uzfi;
-        memset( &info, 0, sizeof(info) );
         memset( &uzfi, 0, sizeof(uzfi) );
 
         const unsigned int MAX_COMMENT = 256;
@@ -235,7 +239,7 @@ bool Unzipper::GetFileInfo(UnZipFileInfo& info)
             info.dwUncompressedSize = uzfi.uncompressed_size;
             info.dwInternalAttrib = uzfi.internal_fa;
             info.dwExternalAttrib = uzfi.external_fa;
-            info.comment = comment;
+            info.comment = std::string(comment);
             info.fileName = ::boost::filesystem::path(fileName);
             info.fileDate.tm_year = uzfi.tmu_date.tm_year - 1900;
             info.fileDate.tm_mon  = uzfi.tmu_date.tm_mon;
