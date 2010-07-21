@@ -1,4 +1,4 @@
-﻿#ifndef _MICROZIP_EXPORT_HPP_
+#ifndef _MICROZIP_EXPORT_HPP_
 #define _MICROZIP_EXPORT_HPP_
 
 #ifdef _WIN32
