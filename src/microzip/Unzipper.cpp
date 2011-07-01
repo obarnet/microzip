@@ -95,7 +95,6 @@ bool Unzipper::UnzipTo(::boost::filesystem::path folder, bool bIgnoreFilePath)
 
 //------------------------------------------------------------------------------
 
-// static version
 bool Unzipper::Unzip(::boost::filesystem::path fileName, ::boost::filesystem::path folder, bool bIgnoreFilePath)
 {
     Unzipper unz;
@@ -107,7 +106,6 @@ bool Unzipper::Unzip(::boost::filesystem::path fileName, ::boost::filesystem::pa
 
 //------------------------------------------------------------------------------
 
-// extended interface
 bool Unzipper::OpenZip(::boost::filesystem::path filePath)
 {
     this->CloseZip();

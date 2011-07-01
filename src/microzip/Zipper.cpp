@@ -61,7 +61,7 @@ void Zipper::GetFileInfo(ZipFileInfo& info)
 }
 
 //------------------------------------------------------------------------------
-// static version
+
 bool Zipper::ZipFile(::boost::filesystem::path filePath, ::boost::filesystem::path zipFilePath, int level)
 {
     bool res = false;
@@ -80,7 +80,7 @@ bool Zipper::ZipFile(::boost::filesystem::path filePath, ::boost::filesystem::pa
 }
 
 //------------------------------------------------------------------------------
-// static version
+
 bool Zipper::ZipFolder(::boost::filesystem::path folderPath, ::boost::filesystem::path zipFilePath, bool bIgnoreFilePath, int level)
 {
     bool res = false;
@@ -294,19 +294,22 @@ bool Zipper::AddFolderToZip(::boost::filesystem::path folderPath, bool bIgnoreFi
         folderName = this->relative_path(folderPath, m_rootFolder);
     }
 
-    // open the file in the zip
-    int nRet = zipOpenNewFileInZip(m_uzFile,
-            (folderName.string()+"/").c_str(),
-            &zfi,
-            NULL,
-            0,
-            NULL,
-            0,
-            NULL,
-            Z_DEFLATED,
-            level);
+    if ( ! folderName.string().empty())
+    {
+        // open the file in the zip
+        int nRet = zipOpenNewFileInZip(m_uzFile,
+                                       (folderName.string()+"/").c_str(),
+                                       &zfi,
+                                       NULL,
+                                       0,
+                                       NULL,
+                                       0,
+                                       NULL,
+                                       Z_DEFLATED,
+                                       level);
 
-    zipCloseFileInZip(m_uzFile);
+        zipCloseFileInZip(m_uzFile);
+    }
 
     ::boost::filesystem::directory_iterator iter(folderPath);
     ::boost::filesystem::directory_iterator end;
