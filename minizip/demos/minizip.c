@@ -26,6 +26,13 @@
         #ifndef _FILE_OFFSET_BIT
                 #define _FILE_OFFSET_BIT 64
         #endif
+        
+        #ifdef __APPLE__
+        #  define off64_t off_t
+        #  define fopen64 fopen
+        #  define fseeko64 fseeko
+        #  define ftello64 ftello
+        #endif
 #endif
 
 #include <stdio.h>
@@ -35,7 +42,7 @@
 #include <errno.h>
 #include <fcntl.h>
 
-#ifdef unix
+#ifndef _WIN32
 # include <unistd.h>
 # include <utime.h>
 # include <sys/types.h>
