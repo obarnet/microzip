@@ -12,6 +12,8 @@
 #include <boost/filesystem/convenience.hpp>
 #include <boost/date_time/posix_time/posix_time_types.hpp>
 #include <boost/date_time/posix_time/conversion.hpp>
+#include <boost/date_time/local_time_adjustor.hpp>
+#include <boost/date_time/c_local_time_adjustor.hpp>
 
 #include "microzip/Zipper.hpp"
 
@@ -127,6 +129,7 @@ bool Zipper::AddFileToZip(::boost::filesystem::path filePath, bool bIgnoreFilePa
     // save file time
     std::time_t lastWriteTime = ::boost::filesystem::last_write_time( filePath ) ;
     ::boost::posix_time::ptime pt = ::boost::posix_time::from_time_t(lastWriteTime);
+    pt = ::boost::date_time::c_local_adjustor< ::boost::posix_time::ptime >::utc_to_local(pt);
     std::tm ptm = ::boost::posix_time::to_tm(pt);
     zfi.dosDate = 0;
     zfi.tmz_date.tm_year = ptm.tm_year;
@@ -202,6 +205,7 @@ bool Zipper::AddFileToZip(::boost::filesystem::path filePath, ::boost::filesyste
     // save file time
     std::time_t lastWriteTime = ::boost::filesystem::last_write_time( filePath ) ;
     ::boost::posix_time::ptime pt = ::boost::posix_time::from_time_t(lastWriteTime);
+    pt = ::boost::date_time::c_local_adjustor< ::boost::posix_time::ptime >::utc_to_local(pt);
     std::tm ptm = ::boost::posix_time::to_tm(pt);
     zfi.dosDate = 0;
     zfi.tmz_date.tm_year = ptm.tm_year;
@@ -279,6 +283,7 @@ bool Zipper::AddFolderToZip(::boost::filesystem::path folderPath, bool bIgnoreFi
 
     std::time_t lastWriteTime = ::boost::filesystem::last_write_time( folderPath ) ;
     ::boost::posix_time::ptime pt = ::boost::posix_time::from_time_t(lastWriteTime);
+    pt = ::boost::date_time::c_local_adjustor< ::boost::posix_time::ptime >::utc_to_local(pt);
     std::tm ptm = ::boost::posix_time::to_tm(pt);
     zfi.dosDate = 0;
     zfi.tmz_date.tm_year = ptm.tm_year;
