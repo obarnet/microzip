@@ -1,0 +1,1 @@
+Project using _[Minizip](http://www.winimage.com/zLibDll/minizip.html)_ (by Gilles Volant) and based on the _[Win32 Wrapper classes](http://www.abstractspoon.com/)_ (by .dan.g.)
